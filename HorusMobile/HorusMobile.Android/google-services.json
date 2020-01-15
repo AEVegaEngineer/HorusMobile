@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "688473875181",
+    "firebase_url": "https://horusmobile-a2f5d.firebaseio.com",
+    "project_id": "horusmobile-a2f5d",
+    "storage_bucket": "horusmobile-a2f5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688473875181:android:1532515ffa8d1b589822e4",
+        "android_client_info": {
+          "package_name": "com.colegiodemedicos.horusmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688473875181-7fggmf3g0kitsh0nhuoimlurepp489v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJh_CyPd0DVVgbQ1estJW31fjC6LkUx_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688473875181-7fggmf3g0kitsh0nhuoimlurepp489v5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
