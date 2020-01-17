@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid>
             <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
-            <BoxView Color="Red" Opacity="0.8"></BoxView>
+            <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -21,9 +21,9 @@
                 <StackLayout Grid.Row="1" Padding="30,20">
                     <Entry Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
                     <Entry Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
-                    <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="Red"></Button>
+                    <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold"></Label>
+                        <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#4163a2"></Label>
                     </StackLayout>
                 </StackLayout>
             </Grid>

@@ -15,8 +15,8 @@ namespace HorusMobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
-            //LoginPage = new LoginPage();
+            //MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,37 @@ namespace HorusMobile.Views
         {            
             InitializeComponent();
         }
+
+        async void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            var users = (Users)BindingContext;
+            /*
+            if (string.IsNullOrWhiteSpace(users.username))
+            {
+                // redirigir y mostrar mensaje de error en login
+            }
+            else
+            {
+                // Redirige al menú
+                
+                //await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+            }
+            */
+            //Debug.WriteLine("calling the door");
+            
+            try
+            {
+                await Navigation.PushModalAsync(new MainPage());
+
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            
+
+        }
+
     }
 }
