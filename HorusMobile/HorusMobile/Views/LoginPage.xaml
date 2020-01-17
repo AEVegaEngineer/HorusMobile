@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HorusMobile.Views.LoginPage">
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
+            <BoxView Color="Red" Opacity="0.8"></BoxView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
+                    <Entry Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
+                    <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="Red"></Button>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

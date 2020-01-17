@@ -17,7 +17,7 @@ namespace HorusMobile.Views
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
             MasterBehavior = MasterBehavior.Popover;
 

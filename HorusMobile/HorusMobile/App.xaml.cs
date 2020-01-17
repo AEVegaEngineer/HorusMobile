@@ -16,6 +16,7 @@ namespace HorusMobile
 
             DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
+            //LoginPage = new LoginPage();
         }
 
         protected override void OnStart()
