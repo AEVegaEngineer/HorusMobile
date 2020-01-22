@@ -19,8 +19,8 @@
                 <Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
-                    <Entry Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
+                    <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
+                    <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
                     <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#4163a2"></Label>
