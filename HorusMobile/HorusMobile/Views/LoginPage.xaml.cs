@@ -24,13 +24,52 @@ namespace HorusMobile.Views
             InitializeComponent();
         }
 
+        /*
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                RestClient client = new RestClient();
+                var getUserLogin = await client.Get<getUserLogin>("http://192.168.50.98/intermedio/api/usuarios/login.php");
+                if (getUserLogin != null)
+                {
+                    LabelChange.Text = getUserLogin.data.id;
+                    Debug.WriteLine("\n\nejecutado correctamente: " + getUserLogin.data.id);
+                }
+                else
+                {
+                    Debug.WriteLine("\n\nMAINPAGE NULL ERROR\n\n");
+                }
+            });
+
+            
+        }
+        */
+
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             
             var user = username.Text;
             var pass = password.Text;
-            if (!string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(pass))
+            Device.BeginInvokeOnMainThread(async () =>
             {
+                RestClient client = new RestClient();
+                var getUserLogin = await client.Get<getUserLogin>("http://192.168.50.98/intermedio/api/usuarios/login.php");
+                if (getUserLogin != null)
+                {
+                    LabelChange.Text = getUserLogin.data.id;
+                    Debug.WriteLine("\n\nlogin ejecutado correctamente: "+getUserLogin.data.id);
+                }
+                else
+                {
+                    Debug.WriteLine("\n\nMAINPAGE NULL ERROR\n\n");
+                }
+            });
+            /*
+            if (!string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(pass))
+            {              
                 if (user == "10" & pass == "10")
                 {
                     Debug.WriteLine("logeado");
@@ -48,28 +87,13 @@ namespace HorusMobile.Views
                     await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");
                     Debug.WriteLine("Usuario o pass incorrecto"); 
                 }
-
             }
             else
             {
                 await DisplayAlert("Login", "Debe escribir un usuario y una contraseña", "OK");
                 Debug.WriteLine("Debe escribir un usuario y una contraseña");
-            }
-            /*
-            if (string.IsNullOrWhiteSpace(users.username))
-            {
-                // redirigir y mostrar mensaje de error en login
-            }
-            else
-            {
-                // Redirige al menú
-                
-                //await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
-            }
+            }     
             */
-            //Debug.WriteLine("calling the door");
-
-                      
 
         }
 
