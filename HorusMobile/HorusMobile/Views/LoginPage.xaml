@@ -24,8 +24,8 @@
                     <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
-                        <Label x:Name="LabelChange" Text="texto de prueba" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
                     </StackLayout>
+                    <ActivityIndicator x:Name="loading" IsRunning="false" />
                     
                 </StackLayout>
             </Grid>
