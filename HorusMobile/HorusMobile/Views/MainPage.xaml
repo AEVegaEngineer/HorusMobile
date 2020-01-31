@@ -6,7 +6,7 @@
             mc:Ignorable="d"
             xmlns:views="clr-namespace:HorusMobile.Views"
             x:Class="HorusMobile.Views.MainPage">
-
+    
     <MasterDetailPage.Master>
         <views:MenuPage />
     </MasterDetailPage.Master>

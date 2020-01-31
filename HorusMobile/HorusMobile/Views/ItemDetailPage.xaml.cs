@@ -28,8 +28,8 @@ namespace HorusMobile.Views
 
             var item = new Item
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                Text = "Título de notificación 1",
+                Description = "Ejemplo de cuerpo de notificación."
             };
 
             viewModel = new ItemDetailViewModel(item);

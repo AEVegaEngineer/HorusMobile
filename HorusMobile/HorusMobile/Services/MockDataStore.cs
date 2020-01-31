@@ -14,12 +14,15 @@ namespace HorusMobile.Services
         {
             items = new List<Item>()
             {
+                /*
                 new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Notificación Ejemplo", Description="Este es el cuerpo de una notificación de ejemplo. Nuevas notificaciones deberán aparecer de este modo." }
+                */
             };
         }
 

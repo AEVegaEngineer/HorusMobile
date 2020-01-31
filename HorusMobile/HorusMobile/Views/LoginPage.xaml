@@ -6,29 +6,45 @@
              mc:Ignorable="d"
              x:Class="HorusMobile.Views.LoginPage">
     <ContentPage.Content>
-        <Grid>
-            <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
-            <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
+        <ScrollView>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>
-
-                <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
-                    <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
-                    <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
+                <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
+            
+            
+                <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                
+                    <Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>
+                
+                    <StackLayout Grid.Row="1" Padding="30,20">
+                        <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
+                        <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
+                        <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
+                        </StackLayout>
+                        <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>                 
                     </StackLayout>
-                    <ActivityIndicator x:Name="loading" IsRunning="false" />
-                    
-                </StackLayout>
+                    <Grid>
+                        <ActivityIndicator x:Name="IndicadorActividad"
+                               Color="Orange"
+                               Margin="0,15,0,0"
+                               HeightRequest="130" 
+                               WidthRequest="130" 
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="Center"
+                               IsRunning="{Binding PBIndicator}"
+                               IsVisible="{Binding PBIndicator}"
+                               IsEnabled="{Binding PBIndicator}"/>
+                    </Grid>
+                
+                </Grid>
             </Grid>
-        </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -6,12 +6,19 @@
              mc:Ignorable="d"
              x:Class="HorusMobile.Views.ItemDetailPage"
              Title="{Binding Title}">
+    <Grid>
+        <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
-    </StackLayout>
+
+        <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Asunto:" FontSize="Medium"  TextColor="#FFFFFF"/>
+            <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small" FontAttributes="Bold" TextColor="#FFFFFF"/>
+            <Label Text="Descripción:" FontSize="Medium"  TextColor="#FFFFFF"/>
+            <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" TextColor="#FFFFFF"/>
+        </StackLayout>
+    </Grid>
+
+    
     
 </ContentPage>

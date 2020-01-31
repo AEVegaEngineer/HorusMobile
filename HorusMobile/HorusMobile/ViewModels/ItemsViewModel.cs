@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using HorusMobile.Models;
 using HorusMobile.Views;
+using System.Linq;
 
 namespace HorusMobile.ViewModels
 {
@@ -17,7 +18,7 @@ namespace HorusMobile.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Notificaciones";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -43,6 +44,14 @@ namespace HorusMobile.ViewModels
                 foreach (var item in items)
                 {
                     Items.Add(item);
+                }
+                
+                bool isEmpty = !items.Any();
+                if (isEmpty)
+                {
+                    /*VERIFICAR SI NO EXISTEN NOTIFICACIONES Y MOSTRAR UN MENSAJE QUE LO EXPLIQUE*/
+                    Debug.WriteLine("No hay notificaciones");
+
                 }
             }
             catch (Exception ex)

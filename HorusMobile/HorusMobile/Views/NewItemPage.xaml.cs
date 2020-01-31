@@ -21,8 +21,8 @@ namespace HorusMobile.Views
 
             Item = new Item
             {
-                Text = "Item name",
-                Description = "This is an item description."
+                Text = "Título de la Notificación",
+                Description = "Este es el cuerpo de la notificación"
             };
 
             BindingContext = this;

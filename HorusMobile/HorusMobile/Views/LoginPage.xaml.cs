@@ -16,6 +16,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Push;
+
 namespace HorusMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -24,37 +27,51 @@ namespace HorusMobile.Views
         public LoginPage()
         {            
             InitializeComponent();
+            // revisar si el token esta set, si lo está, redireccionar.
         }
-
+        private bool _pbIndicator;
+        public bool PBIndicator
+        {
+            get { return _pbIndicator; }
+            set
+            {
+                _pbIndicator = value;
+                OnPropertyChanged();
+            }
+        }
+        /*
+        void UpdateUiState()
+        {
+            Debug.WriteLine("\n\nUPDATEUISTATE\n\n");
+            lblStatus.Text = statusSesion ? "Iniciando Sesión..." : "";
+            IndicadorActividad.IsRunning = statusSesion;
+            IndicadorActividad.IsVisible = statusSesion;
+            IndicadorActividad.IsEnabled = statusSesion;
+        }
+        */
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            PBIndicator = true;
+        }
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             
             var user = username.Text;
-            var pass = password.Text;
-            
+            var pass = password.Text;            
+
             if (string.IsNullOrWhiteSpace(user) && string.IsNullOrWhiteSpace(pass))
             {
                 await DisplayAlert("Login", "Debe escribir un usuario y una contraseña", "OK");
                 Debug.WriteLine("Debe escribir un usuario y una contraseña");
                 return;
             }
-            /*
-            else
+
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
-                if (user == "10" & pass == "10")
-                {
-                    
-                }
-                else
-                {
-                    await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");
-                    Debug.WriteLine("Usuario o pass incorrecto");
-                }
-            }     
-            */
-            
-            Device.BeginInvokeOnMainThread(async () =>
-            {
+                //Muestra el activity indicator para el login
+                PBIndicator = !PBIndicator;
+
                 //RestClient client = new RestClient();
                 HttpClient client = new HttpClient();
 
@@ -62,8 +79,6 @@ namespace HorusMobile.Views
                 Users usuario = new Users();
                 usuario.password = pass;
                 usuario.username = user;
-                loading.Color = Color.Orange;
-                loading.IsRunning = true;
 
                 //serializo el objeto a json
                 var myContent = JsonConvert.SerializeObject(usuario);
@@ -80,21 +95,30 @@ namespace HorusMobile.Views
 
                 if (result != null)
                 {
-                    loading.IsRunning = false;
                     var contents = await result.Content.ReadAsStringAsync();                    
                     Debug.WriteLine("\n\nlogin ejecutando:"+ contents);
 
                     //Deserializo el JSON resultante para obtener los datos del usuario
                     Users u = JsonConvert.DeserializeObject<Users>(contents);
+
+                    //Quita el activity indicator para el login
+                    PBIndicator = !PBIndicator;
+
                     if (u.id == null)
                     {
                         await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");
-                        Debug.WriteLine("Usuario o pass incorrecto");
+                        Debug.WriteLine("\n\nUsuario o pass incorrecto\n\n");
                     }
                     else
                     {
                         try
-                        {                            
+                        {
+                            //seteo el id del usuario en la app, para postearla al appcenter
+                            AppCenter.SetUserId(u.id);
+                            //seteo el token de la app para persistirlo
+                            //Application.Current.Properties["_app_token"] = oLoginService.AppToken;
+
+                            //Muestro la página principal
                             await Navigation.PushModalAsync(new MainPage());
 
                             await Navigation.PopAsync();
@@ -103,15 +127,15 @@ namespace HorusMobile.Views
                         {
                             Debug.WriteLine(ex);
                         }
-                    }
+                    }                   
 
                 }
                 else
                 {
                     Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
                 }
-            });
-            
+
+            });            
 
         }
 
