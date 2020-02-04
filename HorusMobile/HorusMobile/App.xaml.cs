@@ -7,7 +7,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Push;
 namespace HorusMobile
 {
-    public partial class App : Application
+    public partial class App : Application, ILoginManager
     {
 
         public App()
@@ -16,9 +16,12 @@ namespace HorusMobile
 
             DependencyService.Register<MockDataStore>();
             //MainPage = new MainPage();
-            MainPage = new LoginPage();
+            var isLoggedIn = Properties.ContainsKey("_json_token") ? true : false;
+            if(isLoggedIn)
+                MainPage = new MainPage();
+            else
+                MainPage = new LoginPage();
         }
-
         protected override void OnStart()
         {
             AppCenter.Start("66dd0120-23ef-484f-a21c-e9d4f19a2e36", typeof(Push));
@@ -30,6 +33,17 @@ namespace HorusMobile
 
         protected override void OnResume()
         {
+        }
+
+        public void ShowMainPage()
+        {
+            MainPage = new MainPage();
+        }
+
+        public void Logout()
+        {
+            Properties["_json_token"] = false;
+            MainPage = new LoginPage();
         }
     }
 }

@@ -12,5 +12,8 @@ namespace HorusMobile.Models
         public string estado { get; set; }
         public string tipo { get; set; }
         public string fk_personal { get; set; }
+        public string message { get; set; }
+        public string error { get; set; }
+
     }
 }

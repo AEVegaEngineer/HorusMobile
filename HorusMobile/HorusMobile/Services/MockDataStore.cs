@@ -20,9 +20,9 @@ namespace HorusMobile.Services
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Notificación Ejemplo", Description="Este es el cuerpo de una notificación de ejemplo. Nuevas notificaciones deberán aparecer de este modo." }
                 */
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Notificación Ejemplo", Description="Este es el cuerpo de una notificación de ejemplo. Nuevas notificaciones deberán aparecer de este modo." }
+                
             };
         }
 

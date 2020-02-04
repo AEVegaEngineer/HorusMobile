@@ -91,32 +91,38 @@ namespace HorusMobile.Views
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 //envío el request por POST
-                var result = client.PostAsync("http://192.168.50.98/intermedio/api/usuarios/login.php", byteContent).Result;
+                var result = client.PostAsync("http://192.168.50.98/intermedio/apirest/usuarios/login.php", byteContent).Result;
 
                 if (result != null)
                 {
-                    var contents = await result.Content.ReadAsStringAsync();                    
-                    Debug.WriteLine("\n\nlogin ejecutando:"+ contents);
+                    var contents = await result.Content.ReadAsStringAsync();
 
-                    //Deserializo el JSON resultante para obtener los datos del usuario
-                    Users u = JsonConvert.DeserializeObject<Users>(contents);
+                    //reviso si se ha hecho una conexión correcta con el servidor
+                    if(!IsValidJson(contents))
+                    {
+                        await DisplayAlert("Error", "No se ha obtenido respuesta del servidor, revise su conexión a internet.", "OK");
+                        return;
+                    }
+
+                    //Deserializo el JSON resultante para obtener los datos del token de sesión
+                    token tk = JsonConvert.DeserializeObject<token>(contents);
 
                     //Quita el activity indicator para el login
                     PBIndicator = !PBIndicator;
 
-                    if (u.id == null)
+                    if (tk.message == null)
                     {
-                        await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");
-                        Debug.WriteLine("\n\nUsuario o pass incorrecto\n\n");
+                        await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");           
                     }
                     else
                     {
                         try
                         {
                             //seteo el id del usuario en la app, para postearla al appcenter
-                            AppCenter.SetUserId(u.id);
+                            AppCenter.SetUserId(tk.id);
                             //seteo el token de la app para persistirlo
-                            //Application.Current.Properties["_app_token"] = oLoginService.AppToken;
+                            Application.Current.Properties["_user_id"] = tk.id;
+                            Application.Current.Properties["_json_token"] = tk.jwt;
 
                             //Muestro la página principal
                             await Navigation.PushModalAsync(new MainPage());
@@ -138,6 +144,18 @@ namespace HorusMobile.Views
             });            
 
         }
-
+        public static bool IsValidJson(string strInput)
+        {
+            strInput = strInput.Trim();
+            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) || //For object
+                (strInput.StartsWith("[") && strInput.EndsWith("]"))) //For array
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
