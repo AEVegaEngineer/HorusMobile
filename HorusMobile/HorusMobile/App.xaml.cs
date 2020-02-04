@@ -9,18 +9,20 @@ namespace HorusMobile
 {
     public partial class App : Application, ILoginManager
     {
-
+        static ILoginManager loginManager;
+        public static App Current;
+        public static int val;
         public App()
         {
             InitializeComponent();
-
+            Current = this;
             DependencyService.Register<MockDataStore>();
             //MainPage = new MainPage();
             var isLoggedIn = Properties.ContainsKey("_json_token") ? true : false;
             if(isLoggedIn)
                 MainPage = new MainPage();
             else
-                MainPage = new LoginPage();
+                MainPage = new LoginPage(this);
         }
         protected override void OnStart()
         {
@@ -43,7 +45,7 @@ namespace HorusMobile
         public void Logout()
         {
             Properties["_json_token"] = false;
-            MainPage = new LoginPage();
+            MainPage = new LoginPage(this);
         }
     }
 }

@@ -6,8 +6,11 @@ namespace HorusMobile.Models
 {
     public enum MenuItemType
     {
+        /*
         Browse,
-        About
+        About,
+        */
+        Logout
     }
     public class HomeMenuItem
     {

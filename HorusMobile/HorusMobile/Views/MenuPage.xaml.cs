@@ -20,8 +20,11 @@ namespace HorusMobile.Views
 
             menuItems = new List<HomeMenuItem>
             {
+                /*
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Buscar" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="Sobre Nosotros" }
+                */
+                new HomeMenuItem {Id = MenuItemType.Logout, Title="Cerrar Sesión"}
             };
 
             ListViewMenu.ItemsSource = menuItems;
@@ -33,7 +36,8 @@ namespace HorusMobile.Views
                     return;
 
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-                await RootPage.NavigateFromMenu(id);
+                if (id == (int)MenuItemType.Logout)
+                    RootPage.NavigateFromMenu(id);
             };
         }
     }

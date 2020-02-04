@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HorusMobile.Services
 {
-    interface ILoginManager
+    public interface ILoginManager
     {
         void ShowMainPage();
         void Logout();

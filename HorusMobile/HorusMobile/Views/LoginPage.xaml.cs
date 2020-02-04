@@ -18,16 +18,18 @@ using Newtonsoft.Json;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Push;
+using HorusMobile.Services;
 
 namespace HorusMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        ILoginManager iml = null;
+        public LoginPage(ILoginManager ilm)
         {            
             InitializeComponent();
-            // revisar si el token esta set, si lo está, redireccionar.
+            iml = ilm;
         }
         private bool _pbIndicator;
         public bool PBIndicator
@@ -125,9 +127,12 @@ namespace HorusMobile.Views
                             Application.Current.Properties["_json_token"] = tk.jwt;
 
                             //Muestro la página principal
+                            iml.ShowMainPage();
+                            /*
                             await Navigation.PushModalAsync(new MainPage());
 
                             await Navigation.PopAsync();
+                            */
                         }
                         catch (Exception ex)
                         {
