@@ -23,7 +23,7 @@ namespace HorusMobile.Views
 
             InitializeComponent(); 
 
-            MasterBehavior = MasterBehavior.Popover;
+            MasterBehavior = MasterBehavior.Popover;            
 
             //MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
         }

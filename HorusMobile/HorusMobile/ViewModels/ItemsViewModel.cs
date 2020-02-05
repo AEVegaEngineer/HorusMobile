@@ -15,6 +15,7 @@ namespace HorusMobile.ViewModels
     {
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        
 
         public ItemsViewModel()
         {
@@ -24,12 +25,14 @@ namespace HorusMobile.ViewModels
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
+                Debug.WriteLine("\n\n**************EJECUTANDO SUBSCRIPCIÓN*************\n\n");
                 var newItem = item as Item;
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });
-        }
 
+            App.Current.getNotifications();
+        }
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -40,18 +43,20 @@ namespace HorusMobile.ViewModels
             try
             {
                 Items.Clear();
+                //var items = App.Current.getNotifications();
                 var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
-                
-                bool isEmpty = !items.Any();
-                if (isEmpty)
+
+                if (items == null || !items.Any())
                 {
                     /*VERIFICAR SI NO EXISTEN NOTIFICACIONES Y MOSTRAR UN MENSAJE QUE LO EXPLIQUE*/
                     Debug.WriteLine("No hay notificaciones");
-
+                }
+                else
+                {
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
                 }
             }
             catch (Exception ex)
