@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace HorusMobile.Services
 {
-    public interface INotification
+    public interface INotification<T>
     {
-        void getNotifications();
+        Task<T> GetNotifAsync(string id);
+        Task<IEnumerable<T>> GetNotifsAsync(bool forceRefresh = false);
     }
 }

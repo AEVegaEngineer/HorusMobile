@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using HorusMobile.Models;
 using HorusMobile.Views;
 using HorusMobile.ViewModels;
+using System.Diagnostics;
 
 namespace HorusMobile.Views
 {
@@ -22,8 +23,7 @@ namespace HorusMobile.Views
 
         public ItemsPage()
         {
-            InitializeComponent();
-
+            InitializeComponent();            
             BindingContext = viewModel = new ItemsViewModel();
         }
 
@@ -47,9 +47,8 @@ namespace HorusMobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            Debug.WriteLine("\n\n**************EJECUTANDO LOADITEMSCOMMAND*************\n\n");
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

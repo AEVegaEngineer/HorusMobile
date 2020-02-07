@@ -13,6 +13,7 @@ namespace HorusMobile.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public INotification<Item> DataStoreNotifications => DependencyService.Get<INotification<Item>>();
 
         bool isBusy = false;
         public bool IsBusy

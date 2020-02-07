@@ -30,7 +30,7 @@ namespace HorusMobile.Views
             ListViewMenu.ItemsSource = menuItems;
 
             ListViewMenu.SelectedItem = menuItems[0];
-            ListViewMenu.ItemSelected += async (sender, e) =>
+            ListViewMenu.ItemSelected += (sender, e) =>
             {
                 if (e.SelectedItem == null)
                     return;
