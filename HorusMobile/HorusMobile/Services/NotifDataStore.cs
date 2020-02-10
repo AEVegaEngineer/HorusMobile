@@ -124,7 +124,6 @@ namespace HorusMobile.Services
             {
                 List<Item> itemsRetornados = new List<Item>() { };
                 await DisplayAlert("Error", "RESULT NULL ERROR AT NOTIFDATASTORE.GETNOTIFASYNC", "OK");
-                Debug.WriteLine("\n\nRESULT NULL ERROR AT NOTIFDATASTORE.GETNOTIFASYNC\n\n");
                 return await Task.FromResult(itemsRetornados);
             }
         }

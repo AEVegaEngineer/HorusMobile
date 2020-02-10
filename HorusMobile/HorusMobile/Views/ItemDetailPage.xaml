@@ -13,9 +13,24 @@
         <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Asunto:" FontSize="Medium"  TextColor="#FFFFFF"/>
-            <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small" FontAttributes="Bold" TextColor="#FFFFFF"/>
+            <Label Text="{Binding Item.Text}" d:Text="Asunto" FontSize="Small" FontAttributes="Bold" TextColor="#FFFFFF"/>
             <Label Text="Descripción:" FontSize="Medium"  TextColor="#FFFFFF"/>
-            <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small" TextColor="#FFFFFF"/>
+            <Label Text="{Binding Item.Description}" d:Text="Descripción" FontSize="Small" TextColor="#FFFFFF"/>
+            <Label
+                x:Name="LabelVerMasInfo"
+                Grid.Row="2"
+                Margin="10"
+                HorizontalOptions="Center"
+                FontSize="Large"
+                Text="Ver más"
+                TextColor="Yellow"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="VerMasInfoHorusTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+
         </StackLayout>
     </Grid>
 

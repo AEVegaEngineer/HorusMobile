@@ -1,10 +1,11 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using HorusMobile.Models;
 using HorusMobile.ViewModels;
+
+using Xamarin.Essentials;
+using System;
 
 namespace HorusMobile.Views
 {
@@ -35,5 +36,12 @@ namespace HorusMobile.Views
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
         }
+        
+        private async void VerMasInfoHorusTapped(object sender, EventArgs e)
+        {
+            //http://colegiomedico.i-tic.com/horus
+            await Browser.OpenAsync("http://192.168.50.98/intermedio/login_simple.html", BrowserLaunchMode.SystemPreferred);
+        }
+        
     }
 }
