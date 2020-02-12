@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
+/*
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+*/
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using System.ComponentModel;
 using HorusMobile.Models;
+/*
+using System.ComponentModel;
 using HorusMobile.Views;
 using HorusMobile.ViewModels;
+*/
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
 using Microsoft.AppCenter;
-using Microsoft.AppCenter.Push;
+//using Microsoft.AppCenter.Push;
 using HorusMobile.Services;
 
 namespace HorusMobile.Views
@@ -98,7 +102,6 @@ namespace HorusMobile.Views
                 if (result != null)
                 {
                     var contents = await result.Content.ReadAsStringAsync();
-
                     //reviso si se ha hecho una conexión correcta con el servidor
                     if(!IsValidJson(contents))
                     {
@@ -121,8 +124,9 @@ namespace HorusMobile.Views
                         try
                         {
                             //seteo el id del usuario en la app, para postearla al appcenter
-                            AppCenter.SetUserId(tk.id);
-                            //seteo el token de la app para persistirlo
+                            var usr_id = tk.id;
+                            AppCenter.SetUserId(usr_id.ToString());
+                            //seteo el token de la  app para persistirlo
                             Application.Current.Properties["_user_id"] = tk.id;
                             Application.Current.Properties["_json_token"] = tk.jwt;
 
@@ -130,7 +134,6 @@ namespace HorusMobile.Views
                             iml.ShowMainPage();
                             /*
                             await Navigation.PushModalAsync(new MainPage());
-
                             await Navigation.PopAsync();
                             */
                         }

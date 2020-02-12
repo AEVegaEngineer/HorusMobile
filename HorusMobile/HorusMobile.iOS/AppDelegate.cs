@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using Com.OneSignal;
 using Foundation;
 using UIKit;
 
@@ -24,6 +21,8 @@ namespace HorusMobile.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            OneSignal.Current.StartInit("5bd931bc-a426-44ec-85a5-bfd47a771213")
+                  .EndInit();
 
             return base.FinishedLaunching(app, options);
         }
