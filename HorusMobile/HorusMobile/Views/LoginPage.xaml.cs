@@ -20,8 +20,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
-using Microsoft.AppCenter;
-//using Microsoft.AppCenter.Push;
 using HorusMobile.Services;
 
 namespace HorusMobile.Views
@@ -85,6 +83,7 @@ namespace HorusMobile.Views
                 Users usuario = new Users();
                 usuario.password = pass;
                 usuario.username = user;
+                usuario.deviceId = App.Current.getCurrentDeviceId();
 
                 //serializo el objeto a json
                 var myContent = JsonConvert.SerializeObject(usuario);
@@ -125,7 +124,6 @@ namespace HorusMobile.Views
                         {
                             //seteo el id del usuario en la app, para postearla al appcenter
                             var usr_id = tk.id;
-                            AppCenter.SetUserId(usr_id.ToString());
                             //seteo el token de la  app para persistirlo
                             Application.Current.Properties["_user_id"] = tk.id;
                             Application.Current.Properties["_json_token"] = tk.jwt;

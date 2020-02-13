@@ -7,6 +7,7 @@ using HorusMobile.Models;
 using Com.OneSignal;
 using System.Diagnostics;
 using System;
+using System.Collections.Generic;
 
 namespace HorusMobile
 {
@@ -15,6 +16,7 @@ namespace HorusMobile
         public Item Item { get; set; }
         public static App Current;
         public static int val;
+        private string playerId;
         public App()
         {
             InitializeComponent();
@@ -59,9 +61,12 @@ namespace HorusMobile
         {
             OneSignal.Current.IdsAvailable(new Com.OneSignal.Abstractions.IdsAvailableCallback((playerID, pushToken) =>
             {
-                Debug.WriteLine("\n\nSETEADO EL PLAYERID " + playerID + "\n\n");
-                
+                this.playerId = playerID;
             }));
+        }
+        public string getCurrentDeviceId()
+        {
+            return this.playerId;
         }
     }
 }

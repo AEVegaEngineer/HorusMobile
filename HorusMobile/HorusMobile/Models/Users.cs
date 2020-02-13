@@ -14,6 +14,7 @@ namespace HorusMobile.Models
         public string fk_personal { get; set; }
         public string message { get; set; }
         public string error { get; set; }
+        public string deviceId { get; set; }
 
     }
 }

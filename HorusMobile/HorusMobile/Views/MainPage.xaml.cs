@@ -3,9 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 
 using HorusMobile.Models;
-using System.Diagnostics;
 using Microsoft.AppCenter;
-using System.Threading.Tasks;
 
 namespace HorusMobile.Views
 {
