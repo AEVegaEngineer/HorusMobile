@@ -101,7 +101,7 @@ namespace HorusMobile.Services
                 foreach (var notif in j)
                 {
                     var Notif = JsonConvert.DeserializeObject<Notificaciones>(notif.ToString());
-                    if (Notif.id_notif_cuerpo == null)
+                    if (Notif.id_cuerpo == null)
                     {
                         await DisplayAlert("Error", "ERROR " + Notif.message + "\n" + Notif.error, "OK");
                         //Debug.WriteLine("\n\nERROR " + Notif.message + "\n" + Notif.error + "\n\n");

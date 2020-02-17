@@ -6,7 +6,7 @@ namespace HorusMobile.Models
 {
     public class Notificaciones
     {
-        public string id_notif_cuerpo { get; set; }
+        public string id_cuerpo { get; set; }
         public string fk_cabecera { get; set; }
         public string user { get; set; }
         public string asunto { get; set; }
