@@ -103,15 +103,15 @@ namespace HorusMobile.Services
                     var Notif = JsonConvert.DeserializeObject<Notificaciones>(notif.ToString());
                     if (Notif.id_cuerpo == null)
                     {
-                        await DisplayAlert("Error", "ERROR " + Notif.message + "\n" + Notif.error, "OK");
-                        //Debug.WriteLine("\n\nERROR " + Notif.message + "\n" + Notif.error + "\n\n");
+                        await DisplayAlert("Error", "ERROR " + Notif.message + "\n" + Notif.error, "OK");                        
                     }
                     else
                     {
                         Item objeto = new Item
                         {
                             Text = Notif.asunto,
-                            Description = Notif.mensaje
+                            Description = Notif.mensaje,
+                            id_cuerpo = Notif.id_cuerpo
                         };
                         itemsRetornados.Add(objeto);
                     }

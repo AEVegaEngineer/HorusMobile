@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using HorusMobile.Models;
-using HorusMobile.Views;
 using HorusMobile.ViewModels;
 using System.Diagnostics;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace HorusMobile.Views
 {
@@ -32,11 +29,20 @@ namespace HorusMobile.Views
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;
-
+            //Debug.WriteLine("ITEM CUERPO: " + item.id_cuerpo);
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
-            // Manually deselect item.
+            // Deselecciona el item manualmente.
             ItemsListView.SelectedItem = null;
+
+            // Marcando como leída la notificación
+            HttpClient client = new HttpClient();
+            var token = new token { jwt = App.Current.Properties["_json_token"].ToString(), id = item.id_cuerpo };
+            var myContent = JsonConvert.SerializeObject(token);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = client.PostAsync("http://192.168.50.98/intermedio/apirest/notifications/mark.php", byteContent).Result;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -47,7 +53,6 @@ namespace HorusMobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Debug.WriteLine("\n\n**************EJECUTANDO LOADITEMSCOMMAND*************\n\n");
             viewModel.LoadItemsCommand.Execute(null);
         }
     }
