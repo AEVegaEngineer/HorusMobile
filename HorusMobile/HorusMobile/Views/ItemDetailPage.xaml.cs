@@ -39,8 +39,10 @@ namespace HorusMobile.Views
         
         private async void VerMasInfoHorusTapped(object sender, EventArgs e)
         {
+            string user = App.Current.Properties["_user_login"].ToString();
+            string pass = App.Current.Properties["_user_pass"].ToString();
             //http://colegiomedico.i-tic.com/horus
-            await Browser.OpenAsync("http://192.168.50.98/intermedio/login_simple.html", BrowserLaunchMode.SystemPreferred);
+            await Browser.OpenAsync("http://192.168.50.98/intermedio/funciones/login.php?usuario=" + user+"&pass="+pass, BrowserLaunchMode.SystemPreferred);
         }
         
     }

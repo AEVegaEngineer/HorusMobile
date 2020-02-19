@@ -14,22 +14,7 @@
             <Label Text="{Binding Item.Text}" d:Text="Asunto" FontSize="Small" FontAttributes="Bold" TextColor="#FFFFFF"/>
             <Label Text="Descripción:" FontSize="Medium"  TextColor="#FFFFFF"/>
             <Label Text="{Binding Item.Description}" d:Text="Descripción" FontSize="Small" TextColor="#FFFFFF"/>
-            <Button Text="Ver más información" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="VerMasInfoHorusTapped"></Button>
-            <!--
-            <Label
-                x:Name="LabelVerMasInfo"
-                Grid.Row="2"
-                Margin="10"
-                HorizontalOptions="Center"
-                FontSize="Large"
-                Text="Ver más"
-                TextColor="Yellow"
-                TextDecorations="Underline">
-                <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped=""/>
-                </Label.GestureRecognizers>
-            </Label>
-            -->
+            <Button Text="Ver más información" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="VerMasInfoHorusTapped"></Button>            
         </StackLayout>
     </Grid>    
 </ContentPage>

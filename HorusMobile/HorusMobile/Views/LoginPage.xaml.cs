@@ -83,6 +83,8 @@ namespace HorusMobile.Views
                 Users usuario = new Users();
                 usuario.password = pass;
                 usuario.username = user;
+                Application.Current.Properties["_user_login"] = user;
+                Application.Current.Properties["_user_pass"] = pass;
                 usuario.deviceId = App.Current.getCurrentDeviceId();
 
                 //serializo el objeto a json
