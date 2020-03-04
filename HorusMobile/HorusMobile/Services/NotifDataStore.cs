@@ -78,9 +78,9 @@ namespace HorusMobile.Services
 
             //establezco el tipo de contenido a JSON para que la api la reconozca
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
+            //http://192.168.50.98/intermedio
             //envío el request por POST
-            var result = client.PostAsync("http://192.168.50.98/intermedio/apirest/notifications/get.php", byteContent).Result;
+            var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/notifications/get.php", byteContent).Result;
 
             if (result != null)
             {

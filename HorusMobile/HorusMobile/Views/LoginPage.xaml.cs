@@ -96,9 +96,9 @@ namespace HorusMobile.Views
 
                 //establezco el tipo de contenido a JSON para que la api la reconozca
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
+                //http://192.168.50.98/intermedio
                 //envío el request por POST
-                var result = client.PostAsync("http://192.168.50.98/intermedio/apirest/usuarios/login.php", byteContent).Result;
+                var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent).Result;
 
                 if (result != null)
                 {
@@ -116,7 +116,7 @@ namespace HorusMobile.Views
                     //Quita el activity indicator para el login
                     PBIndicator = !PBIndicator;
 
-                    if (tk.message == null)
+                    if (tk.message == null || tk.message == "FAIL")
                     {
                         await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");           
                     }
@@ -140,6 +140,7 @@ namespace HorusMobile.Views
                         catch (Exception ex)
                         {
                             Debug.WriteLine(ex);
+                            await DisplayAlert("Error en Login", ex.ToString(), "OK");
                         }
                     }                   
 
@@ -147,6 +148,7 @@ namespace HorusMobile.Views
                 else
                 {
                     Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
+                    await DisplayAlert("Login", "RESULT NULL LOGIN ERROR", "OK");
                 }
 
             });            

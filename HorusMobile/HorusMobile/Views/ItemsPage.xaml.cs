@@ -42,7 +42,8 @@ namespace HorusMobile.Views
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = client.PostAsync("http://192.168.50.98/intermedio/apirest/notifications/mark.php", byteContent).Result;
+            //http://192.168.50.98/intermedio
+            var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/notifications/mark.php", byteContent).Result;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

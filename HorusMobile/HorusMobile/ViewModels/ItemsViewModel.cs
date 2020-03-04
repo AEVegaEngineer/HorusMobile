@@ -19,7 +19,8 @@ namespace HorusMobile.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Notificaciones";
+            Title = "Horus Mobile";
+            //SubTitle = "Notificaciones";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
