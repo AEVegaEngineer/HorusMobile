@@ -83,9 +83,10 @@ namespace HorusMobile.Views
                 Users usuario = new Users();
                 usuario.password = pass;
                 usuario.username = user;
+                usuario.deviceId = App.Current.getCurrentDeviceId();
                 Application.Current.Properties["_user_login"] = user;
                 Application.Current.Properties["_user_pass"] = pass;
-                usuario.deviceId = App.Current.getCurrentDeviceId();
+                Application.Current.Properties["_device_id"] = App.Current.getCurrentDeviceId();
 
                 //serializo el objeto a json
                 var myContent = JsonConvert.SerializeObject(usuario);
@@ -97,9 +98,17 @@ namespace HorusMobile.Views
                 //establezco el tipo de contenido a JSON para que la api la reconozca
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 //http://192.168.50.98/intermedio
-                //envío el request por POST
-                var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent).Result;
-
+                var result = (HttpResponseMessage)null;
+                try 
+                {
+                    //envío el request por POST
+                    result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent).Result;
+                }
+                catch (Exception exception)
+                {
+                    System.Diagnostics.Debug.WriteLine("CAUGHT EXCEPTION:");
+                    System.Diagnostics.Debug.WriteLine(exception);
+                }
                 if (result != null)
                 {
                     var contents = await result.Content.ReadAsStringAsync();
@@ -148,7 +157,7 @@ namespace HorusMobile.Views
                 else
                 {
                     Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
-                    await DisplayAlert("Login", "RESULT NULL LOGIN ERROR", "OK");
+                    await DisplayAlert("Error de red", "No se ha logrado hacer conexión con http://colegiomedico.i-tic.com, revise su conexión o hable con el administrador de la red.", "OK");
                 }
 
             });            

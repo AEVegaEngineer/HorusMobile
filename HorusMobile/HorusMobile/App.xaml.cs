@@ -1,13 +1,8 @@
 ﻿using Xamarin.Forms;
 using HorusMobile.Services;
 using HorusMobile.Views;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Push;
 using HorusMobile.Models;
 using Com.OneSignal;
-using System.Diagnostics;
-using System;
-using System.Collections.Generic;
 
 namespace HorusMobile
 {
@@ -28,7 +23,7 @@ namespace HorusMobile
             if(isLoggedIn)
                 MainPage = new MainPage();
             else
-                MainPage = new LoginPage(this);
+                MainPage = new LoginPage(null);
             OneSignal.Current.StartInit("5bd931bc-a426-44ec-85a5-bfd47a771213")
                   .EndInit();
             ShowPlayerIdHandler();

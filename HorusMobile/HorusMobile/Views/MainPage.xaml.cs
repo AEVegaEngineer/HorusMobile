@@ -4,6 +4,8 @@ using Xamarin.Forms;
 
 using HorusMobile.Models;
 using Microsoft.AppCenter;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace HorusMobile.Views
 {
@@ -41,6 +43,16 @@ namespace HorusMobile.Views
                         break;
                         */
                     case (int)MenuItemType.Logout:
+                        
+                        HttpClient client = new HttpClient();
+                        Users usuario = new Users();
+                        usuario.deviceId = App.Current.getCurrentDeviceId();
+                        usuario.id = Application.Current.Properties["_user_id"].ToString();
+                        var myContent = JsonConvert.SerializeObject(usuario);
+                        var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                        var byteContent = new ByteArrayContent(buffer);
+                        byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                        var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/logout.php", byteContent).Result;
                         App.Current.Logout();
                         break;
                 }
