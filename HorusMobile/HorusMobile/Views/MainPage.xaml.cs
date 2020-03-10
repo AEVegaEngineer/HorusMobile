@@ -43,7 +43,6 @@ namespace HorusMobile.Views
                         break;
                         */
                     case (int)MenuItemType.Logout:
-                        
                         HttpClient client = new HttpClient();
                         Users usuario = new Users();
                         usuario.deviceId = App.Current.getCurrentDeviceId();

@@ -37,6 +37,23 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
-	</array>
+	</array>  
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>http://colegiomedico.i-tic.com</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+    </dict>
+  </dict>
 </dict>
 </plist>

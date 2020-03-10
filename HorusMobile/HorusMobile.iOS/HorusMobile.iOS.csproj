@@ -26,6 +26,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -146,5 +147,11 @@
       <Project>{8AE07D42-9C3A-4EE5-9B8B-4EA695FDB829}</Project>
       <Name>HorusMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wallpaper.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\colegio_logo.png" />
   </ItemGroup>
 </Project>

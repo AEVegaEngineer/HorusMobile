@@ -19,11 +19,15 @@ namespace HorusMobile
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<NotifDataStore>();
             //MainPage = new MainPage();
-            var isLoggedIn = Properties.ContainsKey("_json_token") ? true : false;
-            if(isLoggedIn)
-                MainPage = new MainPage();
+            var isLoggedIn = "false";
+            if (Application.Current.Properties.ContainsKey("_json_token"))
+            {
+                isLoggedIn = Application.Current.Properties["_json_token"].ToString();
+            }            
+            if(isLoggedIn == "false")
+                MainPage = new LoginPage(this);            
             else
-                MainPage = new LoginPage(null);
+                MainPage = new MainPage();
             OneSignal.Current.StartInit("5bd931bc-a426-44ec-85a5-bfd47a771213")
                   .EndInit();
             ShowPlayerIdHandler();
@@ -49,7 +53,7 @@ namespace HorusMobile
 
         public void Logout()
         {
-            Properties["_json_token"] = false;
+            Properties["_json_token"] = "false";
             MainPage = new LoginPage(this);
         }
         private void ShowPlayerIdHandler()
