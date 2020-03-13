@@ -4,10 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="HorusMobile.Views.ItemDetailPage"
              Title="{Binding Title}">
     <Grid>
-        <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
+        <ffimageloading:CachedImage 
+            Source="wallpaper.jpg"                
+            CacheDuration= "50"
+            RetryCount= "3"
+            RetryDelay= "600"
+            DownsampleToViewSize = "true"
+            />
         <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Asunto:" FontSize="Medium"  TextColor="#FFFFFF"/>

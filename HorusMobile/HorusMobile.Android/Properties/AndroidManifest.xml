@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.colegiodemedicos.horusmobile" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.colegiodemedicos.horusmobile" android:installLocation="auto" android:versionCode="3" android:versionName="3">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<permission android:name="horusmobile-702dc.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="horusmobile-702dc.permission.C2D_MESSAGE" />
-  <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="HorusMobile.Android" android:icon="@drawable/xamarin_logo" android:usesCleartextTraffic="true">
 		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
@@ -11,5 +11,5 @@
 				<category android:name="horusmobile-702dc" />
 			</intent-filter>
 		</receiver>
-	</application>	
+	</application>
 </manifest>

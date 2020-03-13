@@ -15,6 +15,10 @@ namespace HorusMobile.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //FFImageLoading
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

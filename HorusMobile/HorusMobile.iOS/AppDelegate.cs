@@ -21,6 +21,8 @@ namespace HorusMobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            //FFImageLoading
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App());
             OneSignal.Current.StartInit("5bd931bc-a426-44ec-85a5-bfd47a771213")
                   .EndInit();

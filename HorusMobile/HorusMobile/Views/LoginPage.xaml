@@ -3,33 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
              x:Class="HorusMobile.Views.LoginPage">
     <ContentPage.Content>
         <ScrollView>
             <Grid>
-                <Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>
-            
+                <!--<Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>-->
+                <ffimageloading:CachedImage 
+                Source="wallpaper.jpg"                
+                CacheDuration= "50"
+                RetryCount= "3"
+                RetryDelay= "600"
+                Aspect="AspectFill"
+                />
+                <!--LoadingPlaceholder= "LoaderImage"
+                ErrorPlaceholder= "ErrorImage"-->
             
                 <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="200"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Padding="30,50">
+                        <ffimageloading:CachedImage                    
+                        Source="colegio_logo.png"                
+                        CacheDuration= "50"
+                        RetryCount= "3"
+                        RetryDelay= "600"
+                        WidthRequest="200"
+                        DownsampleToViewSize = "true"
+                        />
+                    </StackLayout>
+                    <!--<Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>-->
                 
-                    <Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>
-                
-                    <StackLayout Grid.Row="1" Padding="30,20">
-                        <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White"></Entry>
-                        <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True"></Entry>
-                        <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="OnLoginButtonClicked"></Button>
+                    <StackLayout Grid.Row="1" Padding="50,25">
+                        <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White" TextColor="White"></Entry>
+                        <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True" TextColor="White"></Entry>
+                        <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" FontSize="Medium" Clicked="OnLoginButtonClicked"></Button>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
                         </StackLayout>
-                        <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>                 
+                                         
                     </StackLayout>
+                    <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
+                    <!--
                     <Grid>
                         <ActivityIndicator x:Name="IndicadorActividad"
                                Color="Orange"
@@ -42,6 +62,7 @@
                                IsVisible="{Binding PBIndicator}"
                                IsEnabled="{Binding PBIndicator}"/>
                     </Grid>
+                    -->
                 
                 </Grid>
             </Grid>
