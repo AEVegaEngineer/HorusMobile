@@ -14,25 +14,26 @@ namespace HorusMobile.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<Item> ReadItems { get; set; }
         public Command LoadItemsCommand { get; set; }
         
 
         public ItemsViewModel()
         {
             Title = "Horus Mobile";
-            //SubTitle = "Notificaciones";
             Items = new ObservableCollection<Item>();
+            ReadItems = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {                
-                var newItem = item as Item;
-                Items.Add(newItem); 
+                //var newItem = item as Item;
+
+                //Items.Add(newItem); 
                 //await DataStore.AddItemAsync(newItem);
-                await DataStore.AddItemAsync(newItem);
+                //await DataStore.AddItemAsync(newItem);
             });
 
-            //App.Current.getNotifications();
         }
         async Task ExecuteLoadItemsCommand()
         {
@@ -43,10 +44,11 @@ namespace HorusMobile.ViewModels
 
             try
             {
+                ReadItems.Clear();
                 Items.Clear();
                 Debug.WriteLine("\n\n**************EJECUTANDO GETNOTIFSASYNC*************\n\n");
                 var objeto = await DataStoreNotifications.GetNotifsAsync(false);
-                var items = await DataStore.GetItemsAsync(true);
+                //var items = await DataStore.GetItemsAsync(true);
 
                 if (objeto == null || !objeto.Any())
                 {
@@ -57,7 +59,10 @@ namespace HorusMobile.ViewModels
                 {
                     foreach (var item in objeto)
                     {
-                        Items.Add(item);
+                        if (item.estado == 0)
+                            Items.Add(item);
+                        else
+                            ReadItems.Add(item);
                     }
                 }
             }

@@ -13,15 +13,15 @@
             CacheDuration= "50"
             RetryCount= "3"
             RetryDelay= "600"
-            DownsampleToViewSize = "true"
+            Aspect="AspectFill"
             />
-        <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
+        <BoxView Color="#000" Opacity="0.8"></BoxView>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Asunto:" FontSize="Medium"  TextColor="#FFFFFF"/>
-            <Label Text="{Binding Item.Text}" d:Text="Asunto" FontSize="Small" FontAttributes="Bold" TextColor="#FFFFFF"/>
+            <Label Text="Asunto:" FontSize="Large"  TextColor="#FFFFFF"/>
+            <Label Text="{Binding Item.Text}" d:Text="Asunto" FontSize="Large" FontAttributes="Bold" TextColor="#FFFFFF"/>
             <Label Text="Descripción:" FontSize="Medium"  TextColor="#FFFFFF"/>
-            <Label Text="{Binding Item.Description}" d:Text="Descripción" FontSize="Small" TextColor="#FFFFFF"/>
-            <Button Text="Ver más información" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" Clicked="VerMasInfoHorusTapped"></Button>            
+            <Label Text="{Binding Item.Description}" d:Text="Descripción" FontSize="Medium" TextColor="#FFFFFF"/>
+            <Button Text="Ver más información" BackgroundColor="White" BorderRadius="20" FontSize="Medium" TextColor="#4163a2" Clicked="VerMasInfoHorusTapped"></Button>            
         </StackLayout>
     </Grid>    
 </ContentPage>

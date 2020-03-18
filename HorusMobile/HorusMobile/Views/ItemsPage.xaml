@@ -7,15 +7,24 @@
              x:Class="HorusMobile.Views.ItemsPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelTextGray" TargetType="Label">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
+            <Style x:Key="labelDescriptionGray" TargetType="Label">                
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <!--<ToolbarItem Text="Add" Clicked="AddItem_Clicked" />-->
     </ContentPage.ToolbarItems>
     
     <StackLayout>
-        <Label
-            x:Name="lblNotificaciones"
-            ></Label>
+        <Label Text="Notificaciones Nuevas" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Padding="10" />
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -25,26 +34,18 @@
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>First Item</x:String>
-                    <x:String>Second Item</x:String>
-                    <x:String>Third Item</x:String>
-                    <x:String>Fourth Item</x:String>
-                    <x:String>Fifth Item</x:String>
-                    <x:String>Sixth Item</x:String>
-                </x:Array>
-            </d:ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
                             <Label Text="{Binding Text}" 
+                                x:Name="Titulo"
                                 d:Text="{Binding .}"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                             <Label Text="{Binding Description}" 
+                                x:Name="Descripcion"
                                 d:Text="Item descripton"
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
@@ -53,7 +54,39 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            
         </ListView>
-    </StackLayout>
-    
+        <Label Text="Notificaciones Leídas" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
+        <ListView x:Name="ReadItemsListView"
+                ItemsSource="{Binding ReadItems}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Text}" 
+                                x:Name="Titulo"
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label Text="{Binding Description}" 
+                                x:Name="Descripcion"
+                                d:Text="Item descripton"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>    
 </ContentPage>

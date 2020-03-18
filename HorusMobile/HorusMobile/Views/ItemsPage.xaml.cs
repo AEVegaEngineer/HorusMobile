@@ -22,6 +22,10 @@ namespace HorusMobile.Views
         {
             InitializeComponent();            
             BindingContext = viewModel = new ItemsViewModel();
+            /*
+            Resources["ListNotifTextStyle"] = Resources["labelTextBlack"];
+            Resources["ListNotifDetailTextStyle"] = Resources["labelDescriptionBlack"];
+            */
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -29,6 +33,13 @@ namespace HorusMobile.Views
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;
+            //cambio de estilo
+            /*
+            Resources["ListNotifTextStyle"] = Resources["labelTextGray"];
+            Resources["ListNotifDetailTextStyle"] = Resources["labelDescriptionGray"];
+            */
+            
+
             //Debug.WriteLine("ITEM CUERPO: " + item.id_cuerpo);
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 

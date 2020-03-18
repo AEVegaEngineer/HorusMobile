@@ -1,5 +1,15 @@
-﻿using System;
+﻿using HorusMobile.Models;
+using HorusMobile.Services;
+using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
+/*
+using System.ComponentModel;
+using HorusMobile.Views;
+using HorusMobile.ViewModels;
+*/
+using System.Net.Http;
+using System.Net.Http.Headers;
 /*
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +20,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using HorusMobile.Models;
-/*
-using System.ComponentModel;
-using HorusMobile.Views;
-using HorusMobile.ViewModels;
-*/
-using System.Net.Http;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
-
-using HorusMobile.Services;
-
 namespace HorusMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -29,7 +27,7 @@ namespace HorusMobile.Views
     {
         ILoginManager iml = null;
         public LoginPage(ILoginManager ilm)
-        {            
+        {
             InitializeComponent();
             iml = ilm;
         }
@@ -60,9 +58,9 @@ namespace HorusMobile.Views
         }
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            
+
             var user = username.Text;
-            var pass = password.Text;            
+            var pass = password.Text;
 
             if (string.IsNullOrWhiteSpace(user) && string.IsNullOrWhiteSpace(pass))
             {
@@ -97,7 +95,7 @@ namespace HorusMobile.Views
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             //http://192.168.50.98/intermedio
             var result = (HttpResponseMessage)null;
-            try 
+            try
             {
                 //envío el request por POST
                 result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent).Result;
@@ -111,7 +109,7 @@ namespace HorusMobile.Views
             {
                 var contents = await result.Content.ReadAsStringAsync();
                 //reviso si se ha hecho una conexión correcta con el servidor
-                if(!IsValidJson(contents))
+                if (!IsValidJson(contents))
                 {
                     await DisplayAlert("Error", "No se ha obtenido respuesta del servidor, revise su conexión a internet.", "OK");
                     return;
@@ -123,9 +121,13 @@ namespace HorusMobile.Views
                 //Quita el activity indicator para el login
                 PBIndicator = !PBIndicator;
 
-                if (tk.message == null || tk.message == "FAIL")
+                if (tk.message == "FAIL")
                 {
-                    await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");           
+                    await DisplayAlert("Login", "Usuario o pass incorrecto", "OK");
+                }
+                else if (tk.message == null)
+                {
+                    ErrorEnConexion();
                 }
                 else
                 {
@@ -149,15 +151,14 @@ namespace HorusMobile.Views
                         Debug.WriteLine(ex);
                         await DisplayAlert("Error en Login", ex.ToString(), "OK");
                     }
-                }                   
+                }
 
             }
             else
             {
-                Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
-                await DisplayAlert("Error de red", "No se ha logrado hacer conexión con http://colegiomedico.i-tic.com, revise su conexión o hable con el administrador de la red.", "OK");
+                ErrorEnConexion();
             }
-           
+
 
         }
         public static bool IsValidJson(string strInput)
@@ -172,6 +173,11 @@ namespace HorusMobile.Views
             {
                 return false;
             }
+        }
+        private async void ErrorEnConexion()
+        {
+            Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
+            await DisplayAlert("Error de red", "No se ha logrado hacer conexión con http://colegiomedico.i-tic.com, revise su conexión o hable con el administrador de la red.", "OK");
         }
     }
 }

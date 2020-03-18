@@ -27,7 +27,7 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <StackLayout Grid.Row="0" Padding="30,50">
+                    <StackLayout Grid.Row="0" Padding="0,50">
                         <ffimageloading:CachedImage                    
                         Source="colegio_logo.png"                
                         CacheDuration= "50"
@@ -40,20 +40,20 @@
                     <!--<Image Grid.Row="0" Source="xamarin_logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30"></Image>-->
                 
                     <StackLayout Grid.Row="1" Padding="50,25">
-                        <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="White" TextColor="White"></Entry>
-                        <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="White" IsPassword="True" TextColor="White"></Entry>
+                        <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="Black" TextColor="Black"></Entry>
+                        <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True" TextColor="Black"></Entry>
                         <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" FontSize="Medium" Clicked="OnLoginButtonClicked"></Button>
+                        <!--
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>
                         </StackLayout>
-                                         
+                        -->
                     </StackLayout>
                     <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
                     <!--
                     <Grid>
                         <ActivityIndicator x:Name="IndicadorActividad"
                                Color="Orange"
-                               Margin="0,15,0,0"
                                HeightRequest="130" 
                                WidthRequest="130" 
                                VerticalOptions="CenterAndExpand"
@@ -62,6 +62,9 @@
                                IsVisible="{Binding PBIndicator}"
                                IsEnabled="{Binding PBIndicator}"/>
                     </Grid>
+                    <Grid>
+                            <ActivityIndicator IsRunning="{Binding IsBusy}" Color ="Red" VerticalOptions="Start" HorizontalOptions="Center"/>
+                        </Grid>
                     -->
                 
                 </Grid>

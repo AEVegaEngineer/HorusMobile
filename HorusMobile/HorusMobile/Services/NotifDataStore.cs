@@ -111,7 +111,8 @@ namespace HorusMobile.Services
                         {
                             Text = Notif.asunto,
                             Description = Notif.mensaje,
-                            id_cuerpo = Notif.id_cuerpo
+                            id_cuerpo = Notif.id_cuerpo,
+                            estado = int.Parse(Notif.estado)
                         };
                         itemsRetornados.Add(objeto);
                     }
