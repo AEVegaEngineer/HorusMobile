@@ -3,7 +3,6 @@ using System.ComponentModel;
 using Xamarin.Forms;
 
 using HorusMobile.Models;
-using Microsoft.AppCenter;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -23,7 +22,6 @@ namespace HorusMobile.Views
             //MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
             
             var usr_id = Application.Current.Properties["_user_id"];
-            AppCenter.SetUserId(usr_id.ToString());
             
         }
 

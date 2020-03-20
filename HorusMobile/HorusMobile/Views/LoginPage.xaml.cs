@@ -51,6 +51,20 @@ namespace HorusMobile.Views
             IndicadorActividad.IsEnabled = statusSesion;
         }
         */
+        public class Usuario
+        {
+            
+            public string username;
+            public string password;
+            public string deviceId;
+            
+            public Usuario (string login, string pass, string deviceId)
+            {
+                this.username = login;
+                this.password = pass;
+                this.deviceId = deviceId;
+            }
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -76,17 +90,17 @@ namespace HorusMobile.Views
             HttpClient client = new HttpClient();
 
             //var getUserLogin = await client.Get<getUserLogin>("http://192.168.50.98/intermedio/api/usuarios/login.php");
-            Users usuario = new Users();
-            usuario.password = pass;
-            usuario.username = user;
-            usuario.deviceId = App.Current.getCurrentDeviceId();
+
+            Usuario usuario = new Usuario(user,pass, App.Current.getCurrentDeviceId());
+            //usuario.password = pass;
+            //usuario.username = user;
+            //usuario.deviceId = App.Current.getCurrentDeviceId();
             Application.Current.Properties["_user_login"] = user;
             Application.Current.Properties["_user_pass"] = pass;
             Application.Current.Properties["_device_id"] = App.Current.getCurrentDeviceId();
 
             //serializo el objeto a json
             var myContent = JsonConvert.SerializeObject(usuario);
-
             //construyo un objeto contenido para mandar la data, uso un objeto ByteArrayContent
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
@@ -127,7 +141,7 @@ namespace HorusMobile.Views
                 }
                 else if (tk.message == null)
                 {
-                    ErrorEnConexion();
+                    ErrorEnConexion(130);
                 }
                 else
                 {
@@ -156,7 +170,7 @@ namespace HorusMobile.Views
             }
             else
             {
-                ErrorEnConexion();
+                ErrorEnConexion(159);
             }
 
 
@@ -174,9 +188,9 @@ namespace HorusMobile.Views
                 return false;
             }
         }
-        private async void ErrorEnConexion()
+        private async void ErrorEnConexion(int line)
         {
-            Debug.WriteLine("\n\nRESULT NULL ERROR\n\n");
+            Debug.WriteLine("\n\nRESULT NULL ERROR IN LINE "+line+"\n\n");
             await DisplayAlert("Error de red", "No se ha logrado hacer conexión con http://colegiomedico.i-tic.com, revise su conexión o hable con el administrador de la red.", "OK");
         }
     }
