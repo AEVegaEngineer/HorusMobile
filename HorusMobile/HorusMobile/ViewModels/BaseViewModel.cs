@@ -7,9 +7,11 @@ using Xamarin.Forms;
 
 using HorusMobile.Models;
 using HorusMobile.Services;
+using Xamarin.Forms.Internals;
 
 namespace HorusMobile.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();

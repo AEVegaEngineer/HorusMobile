@@ -8,16 +8,18 @@ using Xamarin.Forms;
 using HorusMobile.Models;
 using HorusMobile.Views;
 using System.Linq;
+using Xamarin.Forms.Internals;
 
 namespace HorusMobile.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class ItemsViewModel : BaseViewModel
     {
         public ObservableCollection<Item> Items { get; set; }
         public ObservableCollection<Item> ReadItems { get; set; }
         public Command LoadItemsCommand { get; set; }
-        
 
+        [Preserve(AllMembers = true)]
         public ItemsViewModel()
         {
             Title = "Horus Mobile";

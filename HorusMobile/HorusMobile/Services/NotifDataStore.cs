@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using HorusMobile.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms.Internals;
 
 namespace HorusMobile.Services
 {
+    [Preserve(AllMembers = true)]
     public class NotifDataStore : INotification<Item>
     {
         readonly List<Item> items;

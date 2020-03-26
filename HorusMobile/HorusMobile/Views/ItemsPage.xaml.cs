@@ -8,12 +8,14 @@ using System.Diagnostics;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using Xamarin.Forms.Internals;
 
 namespace HorusMobile.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
+    [Preserve(AllMembers = true)]
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
@@ -53,7 +55,6 @@ namespace HorusMobile.Views
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            //http://192.168.50.98/intermedio
             var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/notifications/mark.php", byteContent).Result;
         }
 

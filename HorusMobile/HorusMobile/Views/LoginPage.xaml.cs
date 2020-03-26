@@ -2,6 +2,7 @@
 using HorusMobile.Services;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 /*
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using HorusMobile.ViewModels;
 */
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 /*
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ using System.Threading.Tasks;
 */
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace HorusMobile.Views
@@ -51,20 +54,7 @@ namespace HorusMobile.Views
             IndicadorActividad.IsEnabled = statusSesion;
         }
         */
-        public class Usuario
-        {
-            
-            public string username;
-            public string password;
-            public string deviceId;
-            
-            public Usuario (string login, string pass, string deviceId)
-            {
-                this.username = login;
-                this.password = pass;
-                this.deviceId = deviceId;
-            }
-        }
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -72,6 +62,9 @@ namespace HorusMobile.Views
         }
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
+            //Muestra el activity indicator para el login
+            PBIndicator = !PBIndicator;
+            IsBusy = true;
 
             var user = username.Text;
             var pass = password.Text;
@@ -83,18 +76,17 @@ namespace HorusMobile.Views
                 return;
             }
 
-            //Muestra el activity indicator para el login
-            PBIndicator = !PBIndicator;
+            
 
             //RestClient client = new RestClient();
             HttpClient client = new HttpClient();
 
             //var getUserLogin = await client.Get<getUserLogin>("http://192.168.50.98/intermedio/api/usuarios/login.php");
-
-            Usuario usuario = new Usuario(user,pass, App.Current.getCurrentDeviceId());
-            //usuario.password = pass;
-            //usuario.username = user;
-            //usuario.deviceId = App.Current.getCurrentDeviceId();
+            Users usuario = new Users();
+            //Usuario usuario = new Usuario(user,pass, App.Current.getCurrentDeviceId());
+            usuario.password = pass;
+            usuario.username = user;
+            usuario.deviceId = App.Current.getCurrentDeviceId();
             Application.Current.Properties["_user_login"] = user;
             Application.Current.Properties["_user_pass"] = pass;
             Application.Current.Properties["_device_id"] = App.Current.getCurrentDeviceId();
@@ -131,9 +123,12 @@ namespace HorusMobile.Views
 
                 //Deserializo el JSON resultante para obtener los datos del token de sesión
                 token tk = JsonConvert.DeserializeObject<token>(contents);
+                //Token tk = new Token(contents["id"], contents["jwt"], contents["message"]);
+
 
                 //Quita el activity indicator para el login
                 PBIndicator = !PBIndicator;
+                IsBusy = false;
 
                 if (tk.message == "FAIL")
                 {

@@ -50,7 +50,7 @@
                         -->
                     </StackLayout>
                     <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
-                    <!--
+                    
                     <Grid>
                         <ActivityIndicator x:Name="IndicadorActividad"
                                Color="Orange"
@@ -62,6 +62,7 @@
                                IsVisible="{Binding PBIndicator}"
                                IsEnabled="{Binding PBIndicator}"/>
                     </Grid>
+                    <!--
                     <Grid>
                             <ActivityIndicator IsRunning="{Binding IsBusy}" Color ="Red" VerticalOptions="Start" HorizontalOptions="Center"/>
                         </Grid>

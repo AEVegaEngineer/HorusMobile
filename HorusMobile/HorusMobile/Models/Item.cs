@@ -1,7 +1,9 @@
 ﻿using System;
+using Xamarin.Forms.Internals;
 
 namespace HorusMobile.Models
 {
+    [Preserve(AllMembers = true)]
     public class Item
     {
         public string Id { get; set; }
