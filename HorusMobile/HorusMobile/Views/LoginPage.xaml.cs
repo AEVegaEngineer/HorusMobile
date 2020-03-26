@@ -62,6 +62,10 @@ namespace HorusMobile.Views
         }
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
+            IndicadorActividad.IsRunning = true;
+            IndicadorActividad.IsEnabled = true;
+            IndicadorActividad.IsVisible = true;
+
             //Muestra el activity indicator para el login
             PBIndicator = !PBIndicator;
             IsBusy = true;
@@ -168,7 +172,9 @@ namespace HorusMobile.Views
                 ErrorEnConexion(159);
             }
 
-
+            IndicadorActividad.IsRunning = false;
+            IndicadorActividad.IsEnabled = false;
+            IndicadorActividad.IsVisible = false;
         }
         public static bool IsValidJson(string strInput)
         {

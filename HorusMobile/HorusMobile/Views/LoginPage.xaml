@@ -9,6 +9,7 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid>
+                
                 <!--<Image Source="wallpaper.jpg" Aspect="AspectFill"></Image>-->
                 <ffimageloading:CachedImage 
                 Source="wallpaper.jpg"                
@@ -19,7 +20,7 @@
                 />
                 <!--LoadingPlaceholder= "LoaderImage"
                 ErrorPlaceholder= "ErrorImage"-->
-            
+                
                 <BoxView Color="#4163a2" Opacity="0.8"></BoxView>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -51,25 +52,29 @@
                     </StackLayout>
                     <Label Text="" FontSize="Medium" x:Name="lblStatus" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
                     
-                    <Grid>
-                        <ActivityIndicator x:Name="IndicadorActividad"
-                               Color="Orange"
-                               HeightRequest="130" 
-                               WidthRequest="130" 
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="Center"
-                               IsRunning="{Binding PBIndicator}"
-                               IsVisible="{Binding PBIndicator}"
-                               IsEnabled="{Binding PBIndicator}"/>
-                    </Grid>
+                    
                     <!--
+                    IsRunning="{Binding PBIndicator}"
+                               IsVisible="{Binding PBIndicator}"
+                               IsEnabled="{Binding PBIndicator}"
                     <Grid>
                             <ActivityIndicator IsRunning="{Binding IsBusy}" Color ="Red" VerticalOptions="Start" HorizontalOptions="Center"/>
                         </Grid>
                     -->
                 
                 </Grid>
+                <Grid>
+                    <ActivityIndicator x:Name="IndicadorActividad"
+                               Color="Orange"
+                               HeightRequest="130" 
+                               WidthRequest="130" 
+                               IsRunning="True"
+                                           IsVisible="True"
+                                           IsEnabled="True"
+                               />
+                </Grid>
             </Grid>
+            
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
