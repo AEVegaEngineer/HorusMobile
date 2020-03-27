@@ -43,7 +43,7 @@
                     <StackLayout Grid.Row="1" Padding="50,25">
                         <Entry x:Name="username" Placeholder="Nombre de Usuario" PlaceholderColor="Black" TextColor="Black"></Entry>
                         <Entry x:Name="password" Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True" TextColor="Black"></Entry>
-                        <Button  x:Name="btnLogin" Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="#4163a2" FontSize="Medium" Clicked="OnLoginButtonClicked"></Button>
+                        <Button  x:Name="btnLogin" Text="Iniciar Sesión" BackgroundColor="Cyan" BorderRadius="20" TextColor="#4163a2" FontSize="Medium" Clicked="OnLoginButtonClicked"></Button>
                         <!--
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Recuperar Contraseña" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#FFFFFF"></Label>

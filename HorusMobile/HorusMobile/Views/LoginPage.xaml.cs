@@ -63,6 +63,7 @@ namespace HorusMobile.Views
             IndicadorActividad.IsEnabled = true;
             IndicadorActividad.IsVisible = true;
             btnLogin.IsEnabled = false;
+            btnLogin.BackgroundColor = Color.DarkGray;
 
             //Muestra el activity indicator para el login
             PBIndicator = !PBIndicator;
@@ -120,6 +121,8 @@ namespace HorusMobile.Views
                 if (!IsValidJson(contents))
                 {
                     await DisplayAlert("Error", "No se ha obtenido respuesta del servidor, revise su conexión a internet.", "OK");
+                    btnLogin.IsEnabled = true;
+                    btnLogin.BackgroundColor = Color.Cyan;
                     return;
                 }
 
@@ -132,6 +135,7 @@ namespace HorusMobile.Views
                 PBIndicator = !PBIndicator;
                 IsBusy = false;
                 btnLogin.IsEnabled = true;
+                btnLogin.BackgroundColor = Color.Cyan;
 
                 if (tk.message == "FAIL")
                 {
