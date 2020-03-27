@@ -2,7 +2,6 @@
 using HorusMobile.Services;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 /*
 using System.ComponentModel;
@@ -11,7 +10,6 @@ using HorusMobile.ViewModels;
 */
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 /*
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +18,6 @@ using System.Threading.Tasks;
 */
 
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace HorusMobile.Views
@@ -54,7 +51,7 @@ namespace HorusMobile.Views
             IndicadorActividad.IsEnabled = statusSesion;
         }
         */
-        
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -65,6 +62,7 @@ namespace HorusMobile.Views
             IndicadorActividad.IsRunning = true;
             IndicadorActividad.IsEnabled = true;
             IndicadorActividad.IsVisible = true;
+            btnLogin.IsEnabled = false;
 
             //Muestra el activity indicator para el login
             PBIndicator = !PBIndicator;
@@ -80,7 +78,7 @@ namespace HorusMobile.Views
                 return;
             }
 
-            
+
 
             //RestClient client = new RestClient();
             HttpClient client = new HttpClient();
@@ -133,6 +131,7 @@ namespace HorusMobile.Views
                 //Quita el activity indicator para el login
                 PBIndicator = !PBIndicator;
                 IsBusy = false;
+                btnLogin.IsEnabled = true;
 
                 if (tk.message == "FAIL")
                 {
@@ -191,7 +190,7 @@ namespace HorusMobile.Views
         }
         private async void ErrorEnConexion(int line)
         {
-            Debug.WriteLine("\n\nRESULT NULL ERROR IN LINE "+line+"\n\n");
+            Debug.WriteLine("\n\nRESULT NULL ERROR IN LINE " + line + "\n\n");
             await DisplayAlert("Error de red", "No se ha logrado hacer conexión con http://colegiomedico.i-tic.com, revise su conexión o hable con el administrador de la red.", "OK");
         }
     }

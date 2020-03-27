@@ -4,7 +4,7 @@
 	<permission android:name="horusmobile-702dc.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="horusmobile-702dc.permission.C2D_MESSAGE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="HorusMobile.Android" android:icon="@drawable/xamarin_logo" android:usesCleartextTraffic="true">
+	<application android:label="HorusMobile.Android" android:icon="@drawable/colegio_logo" android:usesCleartextTraffic="true">
 		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />

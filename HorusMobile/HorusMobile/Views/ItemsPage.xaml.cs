@@ -1,13 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-
-using HorusMobile.Models;
+﻿using HorusMobile.Models;
 using HorusMobile.ViewModels;
-using System.Diagnostics;
-using System.Net.Http;
 using Newtonsoft.Json;
+using System;
+using System.ComponentModel;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace HorusMobile.Views
@@ -15,14 +13,14 @@ namespace HorusMobile.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    [Preserve(AllMembers = true)]
+    //[Preserve(AllMembers = true)]
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
 
         public ItemsPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
             BindingContext = viewModel = new ItemsViewModel();
             /*
             Resources["ListNotifTextStyle"] = Resources["labelTextBlack"];
@@ -35,12 +33,6 @@ namespace HorusMobile.Views
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;
-            //cambio de estilo
-            /*
-            Resources["ListNotifTextStyle"] = Resources["labelTextGray"];
-            Resources["ListNotifDetailTextStyle"] = Resources["labelDescriptionGray"];
-            */
-            
 
             //Debug.WriteLine("ITEM CUERPO: " + item.id_cuerpo);
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
