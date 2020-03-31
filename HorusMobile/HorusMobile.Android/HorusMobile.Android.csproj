@@ -127,7 +127,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\drawable\cmsj-formateado-full.ico" />
+    <None Include="Resources\drawable\cmsj_formateado_full.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cmsj_formateado_full.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
