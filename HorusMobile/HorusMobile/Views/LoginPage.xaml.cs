@@ -83,7 +83,6 @@ namespace HorusMobile.Views
 
             //RestClient client = new RestClient();
             HttpClient client = new HttpClient();
-
             //var getUserLogin = await client.Get<getUserLogin>("http://192.168.50.98/intermedio/api/usuarios/login.php");
             Users usuario = new Users();
             //Usuario usuario = new Usuario(user,pass, App.Current.getCurrentDeviceId());
@@ -103,16 +102,19 @@ namespace HorusMobile.Views
             //establezco el tipo de contenido a JSON para que la api la reconozca
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             //http://192.168.50.98/intermedio
+            
             var result = (HttpResponseMessage)null;
             try
             {
                 //envío el request por POST
-                result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent).Result;
+                Debug.WriteLine("*************** antes de postasync ****************");
+                result = await client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/login.php", byteContent);
+                Debug.WriteLine("*************** postasync ****************");
             }
             catch (Exception exception)
             {
-                System.Diagnostics.Debug.WriteLine("CAUGHT EXCEPTION:");
-                System.Diagnostics.Debug.WriteLine(exception);
+                Debug.WriteLine("EXCEPCIÓN ATRAPADA:");
+                Debug.WriteLine(exception);
             }
             if (result != null)
             {
@@ -121,6 +123,9 @@ namespace HorusMobile.Views
                 if (!IsValidJson(contents))
                 {
                     await DisplayAlert("Error", "No se ha obtenido respuesta del servidor, revise su conexión a internet.", "OK");
+                    IndicadorActividad.IsRunning = false;
+                    IndicadorActividad.IsEnabled = false;
+                    IndicadorActividad.IsVisible = false;
                     btnLogin.IsEnabled = true;
                     btnLogin.BackgroundColor = Color.Cyan;
                     return;
@@ -134,6 +139,9 @@ namespace HorusMobile.Views
                 //Quita el activity indicator para el login
                 PBIndicator = !PBIndicator;
                 IsBusy = false;
+                IndicadorActividad.IsRunning = false;
+                IndicadorActividad.IsEnabled = false;
+                IndicadorActividad.IsVisible = false;
                 btnLogin.IsEnabled = true;
                 btnLogin.BackgroundColor = Color.Cyan;
 
@@ -178,6 +186,8 @@ namespace HorusMobile.Views
             IndicadorActividad.IsRunning = false;
             IndicadorActividad.IsEnabled = false;
             IndicadorActividad.IsVisible = false;
+            btnLogin.IsEnabled = true;
+            btnLogin.BackgroundColor = Color.Cyan;
         }
         public static bool IsValidJson(string strInput)
         {

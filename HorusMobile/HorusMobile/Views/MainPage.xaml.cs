@@ -26,7 +26,7 @@ namespace HorusMobile.Views
         }
 
         //public async Task NavigateFromMenu(int id)
-        public void NavigateFromMenu(int id)
+        public async void NavigateFromMenu(int id)
         {
             if (!MenuPages.ContainsKey(id))
             {
@@ -49,7 +49,7 @@ namespace HorusMobile.Views
                         var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                         var byteContent = new ByteArrayContent(buffer);
                         byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                        var result = client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/logout.php", byteContent).Result;
+                        var result = await client.PostAsync("http://colegiomedico.i-tic.com/horus/apirest/usuarios/logout.php", byteContent);
                         App.Current.Logout();
                         break;
                 }
